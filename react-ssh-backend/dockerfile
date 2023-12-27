@@ -1,0 +1,21 @@
+# Use a base image with SSH server
+FROM ubuntu:20.04
+
+# Install SSH server
+RUN apt-get update && \
+    apt-get install -y vim && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y openssh-server && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* && \
+    mkdir /var/run/sshd && \
+    echo 'root:password' | chpasswd && \
+    sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+
+# Create a test file
+RUN echo "Hello, this is a test file." > /test.txt
+
+# Expose SSH port
+EXPOSE 22
+
+# Start SSH server
+CMD ["/usr/sbin/sshd", "-D"]
