@@ -53,7 +53,7 @@ Usage
 Provide information on how to use your application.
 
 API Endpoints
-POST /api/upload-csv
+POST /ssh-all-servers
 Description: Upload a CSV file containing server details.
 Request Body:
 json
@@ -69,19 +69,10 @@ Copy code
     // Add more server objects as needed
   ]
 }
+
 Response:
-json
-Copy code
-{
-  "status": "success",
-  "data": [
-    {
-      "host": "example.com",
-      "data": "Contents of copied file"
-    },
-    // Add more server data objects as needed
-  ]
-}
+{"files":[{"host":"localhost","data":"Hello, this is a test file.\n"}]}
+
 Frontend
 Explain how to run the frontend, and any additional details about its implementation.
 
